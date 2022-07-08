@@ -76,7 +76,9 @@ const Post = ({ post, setCurrentId }) => {
           title={post.title}
         />
         <div className={classes.overlay}>
-          <Typography variant="h6">{post.name}</Typography>
+          <Typography variant="h6">
+            {post.name}
+          </Typography>
           <Typography variant="body2">
             {moment(post.createdAt).fromNow()}
           </Typography>
@@ -97,7 +99,18 @@ const Post = ({ post, setCurrentId }) => {
           </div>
         )}
         <div className={classes.details}>
-          <Typography variant="body2" color="textSecondary">
+          <Typography
+            variant="body2"
+            color="textSecondary"
+            style={{
+              display: "-webkit-box",
+              WebkitLineClamp: 1,
+              WebkitBoxOrient: "vertical",
+              whiteSpace: "normal",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+            }}
+          >
             {post.tags.map((tag) => `#${tag} `)}
           </Typography>
         </div>
@@ -110,12 +123,12 @@ const Post = ({ post, setCurrentId }) => {
             color="textSecondary"
             component="p"
             style={{
-              display: '-webkit-box',
+              display: "-webkit-box",
               WebkitLineClamp: 4,
-              WebkitBoxOrient: 'vertical',
-              whiteSpace: 'normal',
+              WebkitBoxOrient: "vertical",
+              whiteSpace: "normal",
               overflow: "hidden",
-              textOverflow: "ellipsis",              
+              textOverflow: "ellipsis",
             }}
           >
             {post.message}
