@@ -28,6 +28,7 @@ export default makeStyles((theme) => ({
   },
   recommendedPosts: {
     display: "flex",
+    flexWrap: 'wrap',
     [theme.breakpoints.down("sm")]: {
       flexDirection: "column",
     },

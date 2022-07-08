@@ -100,6 +100,8 @@ const PostDetails = () => {
                     margin: "20px",
                     cursor: "pointer",
                     maxWidth: "250px",
+                    display: "flex",
+                    flexDirection:'column'
                   }}
                   onClick={() => openPost(_id)}
                   key={_id}
