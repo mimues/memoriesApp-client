@@ -21,6 +21,7 @@ const PostDetails = () => {
 
   useEffect(() => {
     dispatch(getPost(id));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   useEffect(() => {
@@ -29,6 +30,7 @@ const PostDetails = () => {
         getPostsBySearch({ search: "none", tags: post?.tags.join(",") })
       );
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [post]);
 
   if (!post) return null;
@@ -101,7 +103,7 @@ const PostDetails = () => {
                     cursor: "pointer",
                     maxWidth: "250px",
                     display: "flex",
-                    flexDirection:'column'
+                    flexDirection: "column",
                   }}
                   onClick={() => openPost(_id)}
                   key={_id}
