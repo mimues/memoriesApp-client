@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import jwt_decode from "jwt-decode";
-import { GoogleLogin, useGoogleLogin } from "@react-oauth/google";
+import { GoogleLogin } from "@react-oauth/google";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
@@ -15,8 +15,6 @@ import {
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import useStyles from "./styles";
 import Input from "./Input";
-// import {GoogleLogin} from "react-google-login";
-// import Icon from "./Icon";
 
 import { signin, signup } from '../../actions/auth'
 
@@ -72,20 +70,6 @@ const Auth = () => {
     console.log(error);
     alert("Google Sign In was unsuccessful. Try again later");
   };
-
-  // const handleGoogleLogin = useGoogleLogin({
-  //   onSuccess: (tokenResponse) => {
-  //     console.log("tokenResponse", tokenResponse);
-  //     const userObject = jwt_decode(tokenResponse?.access_token, {
-  //       header: true,
-  //     });
-  //     console.log("decoded JWT", userObject);
-  //   },
-  //   onError: (error) => {
-  //     console.log(error);
-  //     alert("Google Sign In was unsuccessful. Try again later");
-  //   },
-  // });
 
   return (
     <Container component="main" maxWidth="xs">
@@ -144,42 +128,14 @@ const Auth = () => {
           >
             {isSignup ? "Sign Up" : "Sign In"}
           </Button>
-          {/* <Button
-            className={classes.googleButton}
-            color="primary"
-            fullWidth
-            onClick={handleGoogleLogin}
-            // disabled={renderProps.disabled}
-            startIcon={<Icon />}
-            variant="contained"
-          >
-            Google Sign In
-          </Button> */}
           <Grid container justifyContent="center">
             <Grid item className={classes.googleButton}>
               <GoogleLogin
-                // clientId="511124836151-t2fp1c509od005til6olsibrn1a8rnoh.apps.googleusercontent.com"
-                // render={(renderProps) => (
-                //   <Button
-                //     className={classes.googleButton}
-                //     color="primary"
-                //     fullWidth
-                //     onClick={renderProps.onClick}
-                //     disabled={renderProps.disabled}
-                //     startIcon={<Icon />}
-                //     variant="contained"
-                //   >
-                //     Google Sign In
-                //   </Button>
-                // )}
-                // width={'150px'}
                 size="large"
                 text="signin_with"
                 shape="pill"
-                // width='100%'
                 onSuccess={googleSuccess}
                 onFailure={googleError}
-                // cookiePolicy={"single_host_origin"}
               />
             </Grid>
           </Grid>
