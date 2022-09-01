@@ -20,6 +20,7 @@ const Navbar = () => {
     setUser(null);
   };
 
+  //when URL changes
   useEffect(() => {
     const token = user?.token;
 
@@ -29,13 +30,13 @@ const Navbar = () => {
     }
 
     setUser(JSON.parse(localStorage.getItem("profile")));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location]);
 
   return (
     <AppBar className={classes.appBar} position="static" color="inherit">
-      <Link to='/' className={classes.brandContainer}>
-        <img src={memoriesText} alt='icon' height='45px' />
+      <Link to="/" className={classes.brandContainer}>
+        <img src={memoriesText} alt="icon" height="45px" />
         <img
           className={classes.image}
           src={memoriesLogo}

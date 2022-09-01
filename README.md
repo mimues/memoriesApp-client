@@ -1,4 +1,4 @@
-# memoriesApp: Check out deployed application
+# Memories App - Check out Deployed Application HERE:
 
 [https://memories-app-mimues.netlify.app/posts](https://memories-app-mimues.netlify.app/posts)
 

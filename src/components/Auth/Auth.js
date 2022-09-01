@@ -16,7 +16,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import useStyles from "./styles";
 import Input from "./Input";
 
-import { signin, signup } from '../../actions/auth'
+import { signin, signup } from "../../actions/auth";
 
 const initialState = {
   firstName: "",
@@ -34,25 +34,26 @@ const Auth = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    if(isSignup) {
-      dispatch(signup(formData, history))
-    } else {
-      dispatch(signin(formData, history))
-
-    }
-  };
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
   const handleShowPassword = () =>
     setShowPassword((prevShowPassword) => !prevShowPassword);
 
   const switchMode = () => {
     setIsSignup((prevIsSignup) => !prevIsSignup);
     setShowPassword(false);
+  };
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (isSignup) {
+      dispatch(signup(formData, history));
+    } else {
+      dispatch(signin(formData, history));
+    }
   };
 
   const googleSuccess = async (res) => {
@@ -66,6 +67,7 @@ const Auth = () => {
       console.log(error);
     }
   };
+
   const googleError = (error) => {
     console.log(error);
     alert("Google Sign In was unsuccessful. Try again later");
@@ -102,6 +104,7 @@ const Auth = () => {
               label="Email Address"
               handleChange={handleChange}
               type="email"
+              autoFocus={isSignup ? false : true}
             />
             <Input
               name="password"
@@ -132,7 +135,7 @@ const Auth = () => {
             <Grid item className={classes.googleButton}>
               <GoogleLogin
                 size="large"
-                text="signin_with"
+                text={isSignup ? "signup_with" : "signin_with"}
                 shape="pill"
                 onSuccess={googleSuccess}
                 onFailure={googleError}

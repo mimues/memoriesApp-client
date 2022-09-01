@@ -2,6 +2,7 @@ import axios from "axios";
 
 const API = axios.create({ baseURL: "https://mern-memories-mimues.herokuapp.com/" });
 
+//before each request, interceptors will check if user is logged in
 API.interceptors.request.use((req) => {
   if (localStorage.getItem("profile")) {
     req.headers.Authorization = `Bearer ${
