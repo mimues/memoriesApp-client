@@ -35,10 +35,10 @@ const Home = () => {
   const [tags, setTags] = useState([]);
 
   const searchPost = () => {
-    if (search.trim() || tags) {
+    if (search.trim() || tags.length) {
       dispatch(getPostsBySearch({ search, tags: tags.join(",") }));
       history.push(
-        `/posts/search?searchQuery=${search || "none"}&tags=${tags.join(",")}`
+        `/posts/search?searchQuery=${search || "none"}&tags=${tags.join(",") || "none"}`
       );
     } else {
       history.push("/");
@@ -46,9 +46,10 @@ const Home = () => {
   };
   const handleKeyDown = (e) => {
     if (e.keyCode === 13) {
-      //search post
+      searchPost();
     }
   };
+
   const handleAdd = (tag) => setTags([...tags, tag]);
   const handleDelete = (tagToDelete) =>
     setTags(tags.filter((tag) => tag !== tagToDelete));

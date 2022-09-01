@@ -123,6 +123,7 @@ const Post = ({ post, setCurrentId }) => {
             color="textSecondary"
             component="p"
             style={{
+              minHeight: '85px',
               display: "-webkit-box",
               WebkitLineClamp: 4,
               WebkitBoxOrient: "vertical",
