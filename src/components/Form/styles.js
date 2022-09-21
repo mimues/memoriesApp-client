@@ -15,8 +15,14 @@ export default makeStyles((theme) => ({
     justifyContent: 'center',
   },
   fileInput: {
-    width: '97%',
-    margin: '10px 0',
+    width: '100%',
+    margin: '10px 5px 10px 0',
+    display: "-webkit-box",
+    WebkitLineClamp: 1,
+    WebkitBoxOrient: "vertical",
+    whiteSpace: "normal",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
   },
   buttonSubmit: {
     marginBottom: 10,

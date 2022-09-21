@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { createPost, updatePost } from "../../actions/posts";
 import { useHistory } from 'react-router-dom'
 
+//currentId for editing
 const Form = ({ currentId, setCurrentId }) => {
   const [postData, setPostData] = useState({
     title: "",
