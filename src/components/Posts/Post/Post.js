@@ -8,8 +8,6 @@ import {
   Button,
   Typography,
 } from "@material-ui/core";
-import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
-import ThumbUpAltOutlined from "@material-ui/icons/ThumbUpAltOutlined";
 import DeleteIcon from "@material-ui/icons/Delete";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import useStyles from "./styles";
@@ -17,6 +15,7 @@ import moment from "moment";
 import { useDispatch } from "react-redux";
 import { deletePost, likePost } from "../../../actions/posts";
 import { useHistory } from "react-router-dom";
+import Likes from "./Likes";
 
 const Post = ({ post, setCurrentId }) => {
   const classes = useStyles();
@@ -39,32 +38,6 @@ const Post = ({ post, setCurrentId }) => {
     }
   };
 
-  const Likes = () => {
-    if (likes.length > 0) {
-      return likes.find((like) => like === userId) ? (
-        <>
-          <ThumbUpAltIcon fontSize="small" />
-          &nbsp;
-          {likes.length > 2
-            ? `You and ${likes.length - 1} others`
-            : `${likes.length} like${likes.length > 1 ? "s" : ""}`}
-        </>
-      ) : (
-        <>
-          <ThumbUpAltOutlined fontSize="small" />
-          &nbsp;{likes.length} {likes.length === 1 ? "Like" : "Likes"}
-        </>
-      );
-    }
-
-    return (
-      <>
-        <ThumbUpAltOutlined fontSize="small" />
-        &nbsp;Like
-      </>
-    );
-  };
-
   const openPost = () => history.push(`/posts/${post._id}`);
 
   return (
@@ -76,7 +49,10 @@ const Post = ({ post, setCurrentId }) => {
           title={post.title}
         />
         <div className={classes.overlay}>
-          <Typography variant="h6">
+          <Typography
+            variant="h6"
+            className={classes.lineClamp1}
+          >
             {post.name}
           </Typography>
           <Typography variant="body2">
@@ -94,7 +70,7 @@ const Post = ({ post, setCurrentId }) => {
               style={{ color: "white" }}
               size="small"
             >
-              <MoreHorizIcon fontSize="default" />
+              <MoreHorizIcon fontSize="medium" />
             </Button>
           </div>
         )}
@@ -102,14 +78,7 @@ const Post = ({ post, setCurrentId }) => {
           <Typography
             variant="body2"
             color="textSecondary"
-            style={{
-              display: "-webkit-box",
-              WebkitLineClamp: 1,
-              WebkitBoxOrient: "vertical",
-              whiteSpace: "normal",
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-            }}
+            className={classes.lineClamp1}
           >
             {post.tags.map((tag) => `#${tag} `)}
           </Typography>
@@ -122,14 +91,9 @@ const Post = ({ post, setCurrentId }) => {
             variant="body2"
             color="textSecondary"
             component="p"
+            className={classes.lineClamp4}
             style={{
-              minHeight: '85px',
-              display: "-webkit-box",
-              WebkitLineClamp: 4,
-              WebkitBoxOrient: "vertical",
-              whiteSpace: "normal",
-              overflow: "hidden",
-              textOverflow: "ellipsis",
+              minHeight: "85px",
             }}
           >
             {post.message}
@@ -143,7 +107,7 @@ const Post = ({ post, setCurrentId }) => {
           disabled={!user?.result}
           onClick={handleLike}
         >
-          <Likes />
+          <Likes likes={likes} userId={userId} />
         </Button>
         {(user?.result?.sub === post?.creator ||
           user?.result?._id === post?.creator) && (

@@ -20,6 +20,7 @@ import useStyles from "./styles";
 
 //hook
 function useQuery() {
+  //parse the query string
   return new URLSearchParams(useLocation().search);
 }
 
@@ -44,6 +45,7 @@ const Home = () => {
       history.push("/");
     }
   };
+  
   const handleKeyDown = (e) => {
     if (e.keyCode === 13) {
       searchPost();
