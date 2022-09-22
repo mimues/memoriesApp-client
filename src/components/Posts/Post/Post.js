@@ -45,14 +45,14 @@ const Post = ({ post, setCurrentId }) => {
       <ButtonBase className={classes.cardAction} onClick={openPost}>
         <CardMedia
           className={classes.media}
-          image={post.selectedFile}
+          image={
+            post.selectedFile ||
+            "https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png"
+          }
           title={post.title}
         />
         <div className={classes.overlay}>
-          <Typography
-            variant="h6"
-            className={classes.lineClamp1}
-          >
+          <Typography variant="h6" className={classes.lineClamp1}>
             {post.name}
           </Typography>
           <Typography variant="body2">

@@ -24,6 +24,7 @@ const PostDetails = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
+  // Similar Posts
   useEffect(() => {
     if (post) {
       dispatch(
@@ -45,7 +46,7 @@ const PostDetails = () => {
 
   const recommendedPosts = posts.filter(({ _id }) => _id !== post._id);
 
-  const openPost = (_id) => history.push(`/posts/${_id}`);
+  const openPost = (id) => history.push(`/posts/${id}`);
 
   return (
     <Paper style={{ padding: "30px", borderRadius: "15px" }} elevation={6}>
@@ -69,13 +70,11 @@ const PostDetails = () => {
           <Typography variant="body1">
             {moment(post.createdAt).fromNow()}
           </Typography>
-          <Divider style={{ margin: "20px 0" }} />
-          <Typography variant="body1">
+          {/* <Typography variant="body1">
             <strong>Realtime Chat - coming soon!</strong>
-          </Typography>
+          </Typography> */}
           <Divider style={{ margin: "20px 0" }} />
           <CommentSection post={post} />
-          <Divider style={{ margin: "20px 0" }} />
         </div>
         <div className={classes.imageSection}>
           <img
@@ -90,6 +89,7 @@ const PostDetails = () => {
       </div>
       {!!recommendedPosts.length && (
         <div className={classes.section}>
+          <Divider style={{ margin: "20px 0 10px 0" }} />
           <Typography gutterBottom variant="h5">
             You might also like:
           </Typography>
@@ -98,13 +98,7 @@ const PostDetails = () => {
             {recommendedPosts.map(
               ({ title, message, name, likes, selectedFile, _id }) => (
                 <div
-                  style={{
-                    margin: "20px",
-                    cursor: "pointer",
-                    maxWidth: "250px",
-                    display: "flex",
-                    flexDirection: "column",
-                  }}
+                  className={classes.recommendedPost}
                   onClick={() => openPost(_id)}
                   key={_id}
                 >
@@ -116,25 +110,14 @@ const PostDetails = () => {
                   </Typography>
                   <img
                     src={selectedFile}
-                    style={{
-                      width: "250px",
-                      height: "160px",
-                      objectFit: "cover",
-                      objectPosition: "center",
-                      border: "1px solid gray",
-                    }}
+                    className={classes.recommendedImage}
                     alt={`${title}: ${name}`}
                   />
                   <Typography
                     gutterBottom
                     variant="subtitle2"
+                    className={classes.lineClamp5}
                     style={{
-                      display: "-webkit-box",
-                      WebkitLineClamp: 5,
-                      WebkitBoxOrient: "vertical",
-                      whiteSpace: "normal",
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
                       marginTop: "5px",
                     }}
                   >

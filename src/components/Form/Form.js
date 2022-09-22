@@ -99,6 +99,7 @@ const Form = ({ currentId, setCurrentId }) => {
           }
         />
         <div className={classes.fileInput}>
+          {/* FileBase only working with jpeg */}
           <FileBase
             type="file"
             multiple={false}

@@ -6,7 +6,7 @@ export default makeStyles((theme) => ({
     objectFit: "cover",
     width: "100%",
     maxHeight: "600px",
-    maxWidth: "700px"
+    maxWidth: "700px",
   },
   card: {
     display: "flex",
@@ -30,10 +30,24 @@ export default makeStyles((theme) => ({
   },
   recommendedPosts: {
     display: "flex",
-    flexWrap: 'wrap',
+    flexWrap: "wrap",
     [theme.breakpoints.down("sm")]: {
       flexDirection: "column",
     },
+  },
+  recommendedPost: {
+    margin: "20px",
+    cursor: "pointer",
+    maxWidth: "250px",
+    display: "flex",
+    flexDirection: "column",
+  },
+  recommendedImage: {
+    width: "250px",
+    height: "160px",
+    objectFit: "cover",
+    objectPosition: "center",
+    border: "1px solid gray",
   },
   loadingPaper: {
     display: "flex",
@@ -45,11 +59,19 @@ export default makeStyles((theme) => ({
   },
   commentsOuterContainer: {
     display: "flex",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
   },
   commentsInnerContainer: {
-    height: '200px',
-    overflowY: 'auto',
-    marginRight: '30px'
-  }
+    height: "200px",
+    overflowY: "auto",
+    marginRight: "30px",
+  },
+  lineClamp5: {
+    display: "-webkit-box",
+    WebkitLineClamp: 5,
+    WebkitBoxOrient: "vertical",
+    whiteSpace: "normal",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+  },
 }));
